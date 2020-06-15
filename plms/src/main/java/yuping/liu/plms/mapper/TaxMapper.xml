@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="yuping.liu.plms.mapper.TaxMapper">
+    <resultMap id="BaseResultMap" type="yuping.liu.plms.model.Tax">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="eid" property="eid " jdbcType="VARCHAR"/>
+        <result column="salary" property="salary " jdbcType="INTEGER"/>
+        <result column="otherSalary" property="otherSalary " jdbcType="INTEGER"/>
+        <result column="insurance" property="insurance" jdbcType="INTEGER"/>
+        <result column="otherDeduct" property="otherDeduct" jdbcType="INTEGER"/>
+        <result column="taxPay" property="taxPay" jdbcType="DOUBLE"/>
+        <result column="afterTax" property="taxPay" jdbcType="DOUBLE"/>
+
+
+
+    </resultMap>
+    <sql id="Base_Column_List">
+    id,eid, salary, otherSalary,insurance, otherDeduct ,taxPay,afterTax
+  </sql>
+
+
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from tax
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tax
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="yuping.liu.plms.model.Tax">
+    insert into tax (id, eid,salary,otherSalary,insurance,otherDeduct,
+    , taxPay,afterTax)
+    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=VARCHAR}, #{salary,jdbcType=INTEGER},
+    #{otherSalary,jdbcType=INTEGER}, #{insurance,jdbcType=INTEGER}, #{otherDeduct,jdbcType=INTEGER},
+    , #{ taxPay,jdbcType=DOUBLE}, #{ afterTax,jdbcType=DOUBLE}
+  </insert>
+    <insert id="insertSelective" parameterType="yuping.liu.plms.model.Tax" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into tax
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="eid != null">
+                eid,
+            </if>
+            <if test="salary != null">
+                salary,
+            </if>
+            <if test="otherSalary != null">
+                otherSalary,
+            </if>
+            <if test="insurance != null">
+                insurance,
+            </if>
+            <if test="otherDeduct != null">
+                otherDeduct,
+            </if>
+
+
+            <if test="taxPay != null">
+                taxPay,
+            </if>
+            <if test="afterTax != null">
+                afterTax,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="eid != null">
+                #{eid,jdbcType=VARCHAR},
+            </if>
+            <if test="salary != null">
+                #{salary,jdbcType=INTEGER},
+            </if>
+            <if test="otherSalary != null">
+                #{otherSalary,jdbcType=INTEGER},
+            </if>
+            <if test="insurance != null">
+                #{insurance,jdbcType=INTEGER},
+            </if>
+            <if test="otherDeduct != null">
+                #{otherDeduct,jdbcType=INTEGER},
+            </if>
+
+            <if test=" taxPay != null">
+                #{taxPay,jdbcType=DOUBLE},
+            </if>
+            <if test="afterTax != null">
+                #{afterTax,jdbcType=DOUBLE},
+            </if>
+
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="yuping.liu.plms.model.Tax">
+        update tax
+        <set>
+            <if test="eid != null">
+                eid = #{eid,jdbcType=VARCHAR},
+            </if>
+            <if test="salary != null">
+                salary = #{salary,jdbcType=INTEGER},
+            </if>
+            <if test="otherSalary != null">
+               otherSalary = #{otherSalary,jdbcType=INTEGER},
+            </if>
+            <if test="insurance != null">
+                insurance = #{insurance,jdbcType=INTEGER},
+            </if>
+            <if test="otherDeduct != null">
+                otherDeduct = #{otherDeduct,jdbcType=INTEGER},
+            </if>
+
+            <if test="taxPay != null">
+                taxPay = #{taxPay,jdbcType=DOUBLE},
+            </if>
+            <if test="afterTax != null">
+               afterTax= #{afterTax,jdbcType=DOUBLE},
+            </if>
+
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="yuping.liu.plms.model.Tax">
+    update tax
+    set
+      eid = #{eid,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=INTEGER},
+      otherSalary = #{otherSalary,jdbcType=INTEGER},
+     insurance = #{insurance,jdbcType=INTEGER},
+      otherDeduct= #{  otherDeduct,jdbcType=INTEGER},
+       taxPay = #{ taxPay,jdbcType=DOUBLE},
+        afterTax= #{afterTax,jdbcType=DOUBLE},
+
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
